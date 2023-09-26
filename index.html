@@ -8,10 +8,6 @@
   <title>CRM-ShopOnline</title>
 
   <style>
-    form .div {
-      display: block;
-    }
-
     label {
       display: block;
     }
@@ -28,48 +24,35 @@
 
 <body>
   <h1>Добавить товар</h1>
-  <form method="POST" action="https://jsonplaceholder.typicode.com/posts" enctype="multipart/form-data">
+  <form method="POST" action="https://jsonplaceholder.typicode.com/posts">
     <fieldset>
-      <div>
-        <label for="name">Наименование</label>
-        <input type="text" name="name" class="text-field">
-      </div>
+      <label for="name">Наименование</label>
+      <input type="text" id="name" name="name" class="text-field">
 
-      <div>
-        <label for="category">Категория</label>
-        <input type="text" name="category" class="text-field">
-      </div>
+      <label for="category">Категория</label>
+      <input type="text" id="category" name="category" class="text-field">
 
-      <div>
-        <label for="unit_type">Единицы измерения</label>
-        <input type="text" name="unit_type" class="text-field">
-      </div>
+      <label for="unit_type">Единицы измерения</label>
+      <input type="text" id="unit_type" name="unit_type" class="text-field">
 
-      <label for="discount">Дисконт</label>
-      <div>
-        <input type="checkbox" onmousedown="this.form.discount.disabled=this.checked">
-        <input type="text" id="discount" name="discount" disabled="disabled">
-      </div>
+      <label for="discount_checkbox">Дисконт</label>
+      <input type="checkbox" id="discount_checkbox" onchange="this.form.discount.disabled=this.checked">
+      <input type="text" name="discount" disabled="disabled">
 
-      <div>
-        <label for="description">Описание</label>
-        <textarea name="description" class="text-field"></textarea>
-      </div>
+      <label>Описание</label>
+      <textarea name="description" class="text-field"></textarea>
 
-      <div>
-        <label for="qty">Количество</label>
-        <input type="text" name="qty" class="text-field">
-      </div>
+      <label>Количество</label>
+      <input type="text" name="qty" class="text-field">
 
-      <div>
-        <label for="price">Цена</label>
-        <input type="text" name="price" class="text-field">
-      </div>
+      <label>Цена</label>
+      <input type="text" name="price" class="text-field">
 
+      <br>
       <input type="file" name="file" class="button">
     </fieldset>
 
-    <button class="button">Добавить товар</button>
+    <button type="submit" class="button">Добавить товар</button>
   </form>
 </body>
 

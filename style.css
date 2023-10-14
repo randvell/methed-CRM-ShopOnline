@@ -52,6 +52,7 @@ html {
   background-color: #fff;
   filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.20));
   padding: 28px;
+  margin-bottom: 32px;
 }
 
 .form__header {
@@ -124,7 +125,6 @@ html {
 .form__button--submit {
   float: right;
   margin-right: 28px;
-  margin-top: 32px;
   margin-bottom: 38px;
 }
 

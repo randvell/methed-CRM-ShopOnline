@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="preload" href="fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="style.css">
+
+  <title>CRM-ShopOnline</title>
+</head>
+
+<body class="page">
+  <form class="form" method="POST" action="https://jsonplaceholder.typicode.com/posts">
+    <button class="form__close" type="button" data-close></button>
+    <h1 class="form__header">Добавить товар</h1>
+    <fieldset class="form__fieldset">
+      <label class="form__label" for="name">Наименование</label>
+      <input class="form__input form__input--text" type="text" id="name" name="name">
+
+      <label class="form__label" for="category">Категория</label>
+      <input class="form__input form__input--text" type="text" id="category" name="category">
+
+      <label class="form__label" for="unit_type">Единицы измерения</label>
+      <input class="form__input form__input--text" type="text" id="unit_type" name="unit_type">
+
+      <label class="form__label" for="discount_checkbox">Дисконт</label>
+      <div class="form__inline">
+        <input class="form__input form__input--checkbox" type="checkbox" id="discount_checkbox"
+          onchange="this.form.discount.disabled=!this.checked">
+        <input class="form__input form__input--text" type="text" name="discount" disabled="disabled">
+      </div>
+
+      <label class="form__label" for="description">Описание</label>
+      <textarea class="form__input form__input--textarea" id="description" name="description"></textarea>
+
+      <label class="form__label" for="qty">Количество</label>
+      <input class="form__input form__input--text" type="text" id="qty" name="qty">
+
+      <label class="form__label" for="price">Цена</label>
+      <input class="form__input form__input--text" type="text" id="price" name="price">
+    </fieldset>
+    <button class="form__button form__button--submit" type="submit">Добавить товар</button>
+  </form>
+</body>
+
+</html>

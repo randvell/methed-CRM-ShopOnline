@@ -1,0 +1,148 @@
+@font-face {
+  font-family: "Inter SemiBold";
+  src: url("fonts/Inter-SemiBold.woff2") format('woff2'),
+    url("fonts/Inter-SemiBold.woff") format('woff');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter Bold";
+  src: url("fonts/Inter-Bold.woff2") format('woff2'),
+    url("fonts/Inter-Bold.woff") format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
+
+html {
+  box-sizing: border-box;
+  width: 792px;
+  height: 823px;
+
+  color: #6e6893;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+}
+
+.form {
+  position: relative;
+  background: #f2f0f9;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+  display: flow-root;
+  padding-left: 106px;
+  padding-right: 106px;
+}
+
+.form__fieldset {
+  border: none;
+  border-radius: 6px;
+  flex-shrink: 0;
+  min-width: 580px;
+  background-color: #fff;
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.20));
+  padding: 28px;
+}
+
+.form__header {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  padding-top: 32px;
+  padding-bottom: 43px;
+}
+
+.form__label {
+  display: block;
+  padding-bottom: 5px;
+  padding-left: 10px;
+}
+
+.form__input {
+  border: none;
+  border-radius: 6px;
+  background: #f4f2ff;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 12px;
+  height: 40px;
+  width: 100%;
+}
+
+.form__input:disabled {
+  background: #eee;
+}
+
+.form__input--checkbox {
+  position: relative;
+  display: block;
+  appearance: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
+.form__input--checkbox:checked {
+  background-image: url("assets/checked_mark.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.form__input--textarea {
+  height: 100px;
+  min-height: 40px;
+  resize: vertical;
+  padding: 10px;
+}
+
+.form__button {
+  font: inherit;
+  width: 200px;
+  height: 39px;
+  border: none;
+  border-radius: 6px;
+  background: #6d5bd0;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.form__button--submit {
+  float: right;
+  margin-right: 28px;
+  margin-top: 32px;
+  margin-bottom: 38px;
+}
+
+.form__close {
+  position: absolute;
+  border: none;
+  background-image: url("assets/cross.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  top: 20px;
+  right: 30px;
+  width: 20px;
+  height: 20px;
+}
+
+.form__inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

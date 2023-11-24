@@ -52,7 +52,7 @@ html {
   background-color: #fff;
   filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.20));
   padding: 28px;
-  margin-bottom: 32px;
+  margin: 0 0 32px 0;
 }
 
 .form__header {

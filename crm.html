@@ -7,16 +7,20 @@
 
   <link rel="preload" href="fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="fonts/lato-regular.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="fonts/lato-bold.woff" as="font" type="font/woff" crossorigin>
 
+  <link rel="stylesheet" href="style.css">
   <title>CRM-ShopOnline</title>
+
+  <script defer src="index.js"></script>
 </head>
 
 <body class="page">
   <form class="form" method="POST" action="https://jsonplaceholder.typicode.com/posts">
     <button class="form__close" type="button" data-close></button>
     <h1 class="form__header">Добавить товар</h1>
+    <div class="heading"></div>
     <fieldset class="form__fieldset">
       <label class="form__label" for="name">Наименование</label>
       <input class="form__input form__input--text" type="text" id="name" name="name">

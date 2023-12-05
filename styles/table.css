@@ -1,0 +1,42 @@
+.table-interface {
+  display: grid;
+  grid-template-columns: 108px 1fr 181px;
+  column-gap: 20px;
+
+  background-color: #fff;
+  padding: 15px 20px;
+}
+
+.button--filter {
+  display: grid;
+  grid-auto-flow: column;
+  row-gap: 10px;
+
+  width: 108px;
+  height: 40px;
+  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid var(--fonts-stroke, #C6C2DE);
+  background: var(--backgrounds-primary, #FFF);
+
+  color: var(--fonts-primary, #25213B);
+  font-family: "Inter Medium";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.input--search {
+  width: 392px;
+  height: 40px;
+  border-radius: 6px;
+  background: var(--backgrounds-stripe, #F4F2FF);
+
+  color: var(--fonts-primary-variant, #6E6893);
+  font-family: "Inter Medium";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

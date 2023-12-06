@@ -2,8 +2,6 @@
   display: grid;
   grid-template-columns: 108px 1fr 181px;
   column-gap: 20px;
-
-  background-color: #fff;
   padding: 15px 20px;
 }
 
@@ -27,16 +25,104 @@
   line-height: normal;
 }
 
+.input-wrapper {
+  position: relative;
+}
+
 .input--search {
   width: 392px;
   height: 40px;
   border-radius: 6px;
   background: var(--backgrounds-stripe, #F4F2FF);
-
   color: var(--fonts-primary-variant, #6E6893);
   font-family: "Inter Medium";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  padding-left: 40px;
+}
+
+.input-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: url('../assets/search.svg') no-repeat;
+  background-size: cover;
+}
+
+.button--add-product {
+  width: 181px;
+  height: 39px;
+  border-radius: 6px;
+  background: var(--primary, #6D5BD0);
+  color: var(--backgrounds-primary, #FFF);
+  font-family: "Inter SemiBold";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table__row {
+  border-top: 1px solid var(--table-separator, #D9D5EC);
+}
+
+.table__row--footer {
+  border: none;
+}
+
+.table__heading, .table__footer {
+  background: var(--backgrounds-parent, #F2F0F9);
+  color: var(--fonts-primary-variant, #6E6893);
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.6px;
+}
+
+.table__heading {
+  text-transform: uppercase;
+}
+
+.table__row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 78px 290px 160px 60px 110px 80px 80px 1fr;
+  align-items: center;
+  gap: 15px;
+  padding: 0 15px;
+  height: 60px;
+}
+
+.table__row--footer {
+  grid-template-columns: auto;
+  justify-content: end;
+  gap: 50px;
+  padding-right: 20px;
+}
+
+.table__row--header, .table__row--footer {
+  height: 45px;
+}
+
+.table__column--center {
+  place-self: center;
+}
+
+.pagination-icon {
+  height: 10px;
+  width: 6px;
 }

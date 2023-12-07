@@ -100,7 +100,7 @@
 .table__row {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 78px 290px 160px 60px 110px 80px 80px 1fr;
+  grid-template-columns: 78px 290px 160px 60px 110px 80px 80px 100px;
   align-items: center;
   gap: 15px;
   padding: 0 15px;
@@ -114,8 +114,19 @@
   padding-right: 20px;
 }
 
-.table__row--header, .table__row--footer {
+.table__row--header {
   height: 45px;
+}
+
+.table__row--footer {
+  height: 45px;
+}
+
+.table__column--table-size {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
 
 .table__column--center {
@@ -125,4 +136,25 @@
 .pagination-icon {
   height: 10px;
   width: 6px;
+}
+
+.size-selector-icon {
+  fill: var(--fonts-primary-variant, #6E6893);
+}
+
+.table__column--buttons {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.table-container {
+  min-width: 800px;
+  overflow-x: auto
+}
+
+.product-icon {
+  width: 20px;
+  height: 20px;
 }

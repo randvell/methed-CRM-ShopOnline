@@ -1,17 +1,19 @@
-.form {
+.popup {
   position: relative;
-  background: #f2f0f9;
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
-  display: flow-root;
-  padding-left: 106px;
-  padding-right: 106px;
+  margin: 0 auto;
+  padding: 30px;
+  min-height: unset;
+}
+
+.container--form {
+  max-width: 580px;
+  position: relative;
 }
 
 .form__fieldset {
   border: none;
   border-radius: 6px;
   flex-shrink: 0;
-  min-width: 580px;
   background-color: #fff;
   filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.20));
   padding: 28px;
@@ -26,10 +28,19 @@
   padding-bottom: 43px;
 }
 
-.form__label {
+.label__text {
   display: block;
   padding-bottom: 5px;
   padding-left: 10px;
+
+  color: var(--fonts-primary-variant, #6E6893);
+  font-family: "Inter Medium";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
 }
 
 .form__input {
@@ -38,7 +49,6 @@
   background: #f4f2ff;
   padding-left: 15px;
   padding-right: 15px;
-  margin-bottom: 12px;
   height: 40px;
   width: 100%;
 }
@@ -57,43 +67,37 @@
 }
 
 .form__input--checkbox:checked {
+  content: "";
   background-image: url("assets/checked_mark.svg");
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .form__input--textarea {
-  height: 100px;
+  height: 112px;
   min-height: 40px;
-  resize: vertical;
+  resize: none;
   padding: 10px;
 }
 
 .form__button {
-  font: inherit;
+  color: var(--backgrounds-primary, #FFF);
+  font-family: "Inter SemiBold";
   width: 200px;
   height: 39px;
-  border: none;
-  border-radius: 6px;
-  background: #6d5bd0;
-  color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+  border-radius: 6px;
+  background: var(--Primary, #6D5BD0);
 }
 
-.form__button--submit {
-  float: right;
-  margin-right: 28px;
-  margin-bottom: 38px;
-}
-
-.form__close {
+.popup__close {
   position: absolute;
   border: none;
-  background-image: url("assets/cross.svg");
+  background-image: url("../assets/cross.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -107,4 +111,134 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.form__fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "name description"
+    "category description"
+    "unit quantity"
+    "discount price"
+    "error image-btn"
+    "image-preview image-preview"
+  ;
+  /* нужно разобраться как сделать отступы с учетом лейблов */
+  row-gap: 32px;
+  column-gap: 24px;
+}
+
+.form__checkbox-wrapper {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  column-gap: 10px;
+}
+
+.form__label--wrapped {
+  grid-column: 1 / 3;
+}
+
+.form__label--name {
+  grid-area: name;
+}
+
+.form__label--category {
+  grid-area: category;
+}
+
+.form__label--unit {
+  grid-area: unit;
+}
+
+.form__checkbox-wrapper--discount {
+  grid-area: discount;
+}
+
+.form__label--description {
+  height: 100%;
+  grid-area: description;
+}
+
+.form__label--quantity {
+  grid-area: quantity;
+}
+
+.form__label--price {
+  grid-area: price;
+}
+
+.form__button--add-image {
+  grid-area: image-btn;
+  width: 100%;
+}
+
+.form__error {
+  grid-area: error;
+  color: #D80101;
+  text-align: center;
+  font-family: "Inter Bold";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.form__image-preview {
+  /* по дефолту не будет видно на странице */
+  position: relative;
+  grid-area: image-preview;
+  place-self: center;
+  background: url('../images/form_preview.jpg') no-repeat;
+  width: 200px;
+  height: 200px;
+}
+
+.form__image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.form__image-overlay:hover {
+  opacity: 1;
+}
+
+.form__summary {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-evenly;
+}
+
+.popup--error {
+  display: grid;
+  grid-auto-flow: row;
+  align-content: center;
+  justify-items: center;
+  row-gap: 30px;
+
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+  width: 350px;
+  height: 350px;
+  min-height: unset;
+}
+
+.error-text {
+  color: var(--fonts-primary-variant, #6E6893);
+  font-family: "Inter Bold";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
 }

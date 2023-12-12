@@ -70,6 +70,11 @@
 }
 
 .table {
+  font-family: "Inter SemiBold";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
   border-collapse: collapse;
   width: 100%;
 }
@@ -82,10 +87,10 @@
   border: none;
 }
 
-.table__heading, .table__footer {
+.table__heading,
+.table__footer {
   background: var(--backgrounds-parent, #F2F0F9);
   color: var(--fonts-primary-variant, #6E6893);
-  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;

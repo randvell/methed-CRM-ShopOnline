@@ -30,7 +30,8 @@
 }
 
 .input--search {
-  width: 392px;
+  width: 100%;
+  max-width: 392px;
   height: 40px;
   border-radius: 6px;
   background: var(--backgrounds-stripe, #F4F2FF);
@@ -155,7 +156,6 @@
 }
 
 .table-container {
-  min-width: 800px;
   overflow-x: auto
 }
 

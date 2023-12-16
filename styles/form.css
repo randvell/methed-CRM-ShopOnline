@@ -8,7 +8,7 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.popup--product {
+.modal--product {
   z-index: 11;
   left: 30%;
   position: absolute;
@@ -16,7 +16,7 @@
   padding: 30px 100px;
 }
 
-.popup--error {
+.modal--error {
   z-index: 12;
   position: absolute;
   left: 40%;
@@ -123,7 +123,7 @@
   background: var(--Primary, #6D5BD0);
 }
 
-.popup__close {
+.modal__close {
   position: absolute;
   border: none;
   background-image: url("../assets/cross.svg");
@@ -257,4 +257,26 @@
   line-height: normal;
   letter-spacing: 1.8px;
   text-transform: uppercase;
+}
+
+.identifier {
+  color: #C5C5C5;
+  font-family: "Inter SemiBold";
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.modal--visible {
+  display: grid;
+}
+
+.modal--hidden {
+  display: none;
+}
+
+.container--header-modal {
+  align-items: center;
 }

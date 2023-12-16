@@ -13,22 +13,23 @@
   <link rel="preload" href="fonts/Inter-Bold.woff" as="font" type="font/woff" crossorigin>
 
   <link rel="stylesheet" href="styles/index.css">
+  <script src="js/script.js" defer></script>
+
   <title>CRM-ShopOnline</title>
 </head>
 
 <body class="page">
   <div class="overlay"></div>
-  <div class="popup popup--product">
-    <button class="popup__close" type="button" data-close></button>
+  <div class="modal modal--product modal--visible">
+    <button class="modal__close" type="button" data-close></button>
     <div class="container container--form">
-      <div class="container container--header">
+      <div class="container container--header container--header-modal">
         <h2 class="heading">Добавить товар</h2>
+        <p class="identifier">id: <span class="identifier__value">201910241</span></p>
       </div>
       <div class="break"></div>
 
       <form class="form" method="POST" action="https://jsonplaceholder.typicode.com/posts">
-        <div class="heading"></div>
-
         <fieldset class="form__fieldset">
           <label class="label form__label form__label--name" for="name">
             <span class="label__text">Наименование</span>
@@ -51,7 +52,7 @@
             </label>
             <input class="form__input form__input--checkbox" type="checkbox" id="discount_checkbox"
               onchange="this.form.discount.disabled=!this.checked">
-            <input class="form__input form__input--text" type="text" name="discount" disabled="disabled">
+            <input class="form__input form__input--text" type="text" name="discount" id="discount_value" disabled="disabled">
           </div>
 
           <label class="label form__label form__label--description" for="description">
@@ -102,8 +103,8 @@
       </form>
     </div>
   </div>
-  <div class="popup popup--error">
-    <button class="popup__close" type="button" data-close></button>
+  <div class="modal modal--error modal--hidden">
+    <button class="modal__close" type="button" data-close></button>
     <svg class="icon-cross" xmlns="http://www.w3.org/2000/svg" width="94" height="94" viewBox="0 0 94 94" fill="none">
       <path d="M2 2L92 92" stroke="#D80101" stroke-width="3" stroke-linecap="round" />
       <path d="M2 92L92 2" stroke="#D80101" stroke-width="3" stroke-linecap="round" />

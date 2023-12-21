@@ -1,4 +1,5 @@
 .overlay {
+  display: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -17,12 +18,11 @@
 }
 
 .modal--error {
+  display: none;
   z-index: 12;
   position: absolute;
   left: 40%;
   top: 20%;
-
-  display: grid;
   grid-auto-flow: row;
   align-content: center;
   justify-items: center;
@@ -269,12 +269,12 @@
   text-transform: uppercase;
 }
 
-.modal--visible {
-  display: grid;
+.overlay--visible {
+  display: block;
 }
 
-.modal--hidden {
-  display: none;
+.popup--visible {
+  display: grid;
 }
 
 .container--header-modal {

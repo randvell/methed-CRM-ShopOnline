@@ -19,99 +19,101 @@
 </head>
 
 <body class="page">
-  <div class="overlay"></div>
-  <div class="modal modal--product modal--visible">
-    <button class="modal__close" type="button" data-close></button>
-    <div class="container container--form">
-      <div class="container container--header container--header-modal">
-        <h2 class="heading">Добавить товар</h2>
-        <p class="identifier">id: <span class="identifier__value">201910241</span></p>
-      </div>
-      <div class="break"></div>
-
-      <form class="form" method="POST" action="https://jsonplaceholder.typicode.com/posts">
-        <fieldset class="form__fieldset">
-          <label class="label form__label form__label--name" for="name">
-            <span class="label__text">Наименование</span>
-            <input class="form__input form__input--text" type="text" id="name" name="name">
-          </label>
-
-          <label class="label form__label form__label--category" for="category">
-            <span class="label__text">Категория</span>
-            <input class="form__input form__input--text" type="text" id="category" name="category">
-          </label>
-
-          <label class="label form__label form__label--unit" for="unit_type">
-            <span class="label__text">Единицы измерения</span>
-            <input class="form__input form__input--text" type="text" id="unit_type" name="unit_type">
-          </label>
-
-          <div class="form__checkbox-wrapper form__checkbox-wrapper--discount">
-            <label class="label form__label form__label--wrapped" for="discount_checkbox">
-              <span class="label__text">Дисконт</span>
-            </label>
-            <input class="form__input form__input--checkbox" type="checkbox" id="discount_checkbox"
-              onchange="this.form.discount.disabled=!this.checked">
-            <input class="form__input form__input--text" type="text" name="discount" id="discount_value" disabled="disabled">
-          </div>
-
-          <label class="label form__label form__label--description" for="description">
-            <span class="label__text">Описание</span>
-            <textarea class="form__input form__input--textarea" id="description" name="description"></textarea>
-          </label>
-
-          <label class="label form__label form__label--quantity" for="qty">
-            <span class="label__text">Количество</span>
-            <input class="form__input form__input--text" type="text" id="qty" name="qty">
-          </label>
-
-          <label class="label form__label form__label--price" for="price">
-            <span class="label__text">Цена</span>
-            <input class="form__input form__input--text" type="text" id="price" name="price">
-          </label>
-
-          <span class="form__error">
-            Изображение не должно превышать размер 1 Мб
-          </span>
-
-          <button class="form__button form__button--add-image">
-            Добавить изображение
-          </button>
-
-          <div class="form__image-preview">
-            <div class="form__image-overlay">
-              <button class="delete-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                  <path
-                    d="M23.5334 17.45L20 20.9833L16.45 17.45L14.1 19.8L17.65 23.3333L14.1167 26.8667L16.4667 29.2167L20 25.6833L23.5334 29.2167L25.8834 26.8667L22.35 23.3333L25.8834 19.8L23.5334 17.45ZM25.8334 6.66667L24.1667 5H15.8334L14.1667 6.66667H8.33337V10H31.6667V6.66667H25.8334ZM10 31.6667C10 33.5 11.5 35 13.3334 35H26.6667C28.5 35 30 33.5 30 31.6667V11.6667H10V31.6667ZM13.3334 15H26.6667V31.6667H13.3334V15Z"
-                    fill="white" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </fieldset>
-        <div class="form__summary">
-          <div class="summary">
-            <p class="summary__text">Итоговая стоимость:
-              <span class="summary__value">$900.00</span>
-            </p>
-          </div>
-          <button class="form__button form__button--submit" type="submit">
-            Добавить товар
-          </button>
+  <div class="overlay">
+    <div class="modal modal--product modal--visible">
+      <button class="modal__close" type="button" data-close></button>
+      <div class="container container--form">
+        <div class="container container--header container--header-modal">
+          <h2 class="heading">Добавить товар</h2>
+          <p class="identifier">id: <span class="identifier__value">201910241</span></p>
         </div>
-      </form>
+        <div class="break"></div>
+
+        <form class="form" method="POST" action="https://jsonplaceholder.typicode.com/posts">
+          <fieldset class="form__fieldset">
+            <label class="label form__label form__label--name" for="name">
+              <span class="label__text">Наименование</span>
+              <input class="form__input form__input--text" type="text" id="name" name="name">
+            </label>
+
+            <label class="label form__label form__label--category" for="category">
+              <span class="label__text">Категория</span>
+              <input class="form__input form__input--text" type="text" id="category" name="category">
+            </label>
+
+            <label class="label form__label form__label--unit" for="unit_type">
+              <span class="label__text">Единицы измерения</span>
+              <input class="form__input form__input--text" type="text" id="unit_type" name="unit_type">
+            </label>
+
+            <div class="form__checkbox-wrapper form__checkbox-wrapper--discount">
+              <label class="label form__label form__label--wrapped" for="discount_checkbox">
+                <span class="label__text">Дисконт</span>
+              </label>
+              <input class="form__input form__input--checkbox" type="checkbox" id="discount_checkbox"
+                onchange="this.form.discount.disabled=!this.checked">
+              <input class="form__input form__input--text" type="text" name="discount" id="discount_value"
+                disabled="disabled">
+            </div>
+
+            <label class="label form__label form__label--description" for="description">
+              <span class="label__text">Описание</span>
+              <textarea class="form__input form__input--textarea" id="description" name="description"></textarea>
+            </label>
+
+            <label class="label form__label form__label--quantity" for="qty">
+              <span class="label__text">Количество</span>
+              <input class="form__input form__input--text" type="text" id="qty" name="qty">
+            </label>
+
+            <label class="label form__label form__label--price" for="price">
+              <span class="label__text">Цена</span>
+              <input class="form__input form__input--text" type="text" id="price" name="price">
+            </label>
+
+            <span class="form__error">
+              Изображение не должно превышать размер 1 Мб
+            </span>
+
+            <button class="form__button form__button--add-image">
+              Добавить изображение
+            </button>
+
+            <div class="form__image-preview">
+              <div class="form__image-overlay">
+                <button class="delete-button">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <path
+                      d="M23.5334 17.45L20 20.9833L16.45 17.45L14.1 19.8L17.65 23.3333L14.1167 26.8667L16.4667 29.2167L20 25.6833L23.5334 29.2167L25.8834 26.8667L22.35 23.3333L25.8834 19.8L23.5334 17.45ZM25.8334 6.66667L24.1667 5H15.8334L14.1667 6.66667H8.33337V10H31.6667V6.66667H25.8334ZM10 31.6667C10 33.5 11.5 35 13.3334 35H26.6667C28.5 35 30 33.5 30 31.6667V11.6667H10V31.6667ZM13.3334 15H26.6667V31.6667H13.3334V15Z"
+                      fill="white" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </fieldset>
+          <div class="form__summary">
+            <div class="summary">
+              <p class="summary__text">Итоговая стоимость:
+                <span class="summary__value">$900.00</span>
+              </p>
+            </div>
+            <button class="form__button form__button--submit" type="submit">
+              Добавить товар
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal modal--error">
+      <button class="modal__close" type="button" data-close></button>
+      <svg class="icon-cross" xmlns="http://www.w3.org/2000/svg" width="94" height="94" viewBox="0 0 94 94" fill="none">
+        <path d="M2 2L92 92" stroke="#D80101" stroke-width="3" stroke-linecap="round" />
+        <path d="M2 92L92 2" stroke="#D80101" stroke-width="3" stroke-linecap="round" />
+      </svg>
+      <p class="error-text">Что-то пошло не так</p>
     </div>
   </div>
-  <div class="modal modal--error modal--hidden">
-    <button class="modal__close" type="button" data-close></button>
-    <svg class="icon-cross" xmlns="http://www.w3.org/2000/svg" width="94" height="94" viewBox="0 0 94 94" fill="none">
-      <path d="M2 2L92 92" stroke="#D80101" stroke-width="3" stroke-linecap="round" />
-      <path d="M2 92L92 2" stroke="#D80101" stroke-width="3" stroke-linecap="round" />
-    </svg>
-    <p class="error-text">Что-то пошло не так</p>
-  </div>
-  
+
   <div class="header header--cms">
     <div class="container container--header container--header-cms">
       <h1 class="heading">CMS</h1>

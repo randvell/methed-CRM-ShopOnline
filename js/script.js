@@ -11,18 +11,31 @@ const discountValue = form.querySelector('#discount_value');
 const totalPrice = form.querySelector('.summary__value');
 
 const overlay = document.querySelector('.overlay');
-const showOverlay = () => {
-  overlay.classList.add('overlay--visible')
-}
-const hideOverlay = () => {
-  overlay.classList.remove('overlay--visible')
-}
 
-productModal.addEventListener('click', event => {
-  event.stopPropagation();
-});
+const showOverlay = () => {
+  overlay.classList.add('overlay--visible');
+};
+
+const hideOverlay = () => {
+  overlay.classList.remove('overlay--visible');
+};
 
 const addProductBtn = document.querySelector('.button--add-product');
 addProductBtn.addEventListener('click', showOverlay);
-overlay.addEventListener('click', hideOverlay);
-formCloseBtn.addEventListener('click', hideOverlay);
+
+overlay.addEventListener('click', e => {
+  const target = e.target;
+  if (target === overlay || target.closest('.modal__close')) {
+    hideOverlay();
+  }
+});
+
+const tableBody = document.querySelector('.table__body');
+tableBody.addEventListener('click', e => {
+  const target = e.target;
+  if (target.closest('.delete-product')) {
+    const row = target.closest('tr');
+    row.remove();
+    console.log(tableBody.querySelectorAll('tr'));
+  }
+});

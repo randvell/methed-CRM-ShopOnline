@@ -50,9 +50,10 @@
               <label class="label form__label form__label--wrapped" for="discount_checkbox">
                 <span class="label__text">Дисконт</span>
               </label>
+
               <input class="form__input form__input--checkbox" type="checkbox" id="discount_checkbox"
                 onchange="this.form.discount.disabled=!this.checked">
-              <input class="form__input form__input--text" type="text" name="discount" id="discount_value"
+              <input class="form__input form__input--text" type="number" name="discount" min="1" max="99" id="discount_value"
                 disabled="disabled">
             </div>
 

@@ -96,8 +96,7 @@
 }
 
 .form__input--checkbox:checked {
-  content: "";
-  background-image: url("assets/checked_mark.svg");
+  background-image: url("../assets/checked_mark.svg");
   background-repeat: no-repeat;
   background-position: center;
 }

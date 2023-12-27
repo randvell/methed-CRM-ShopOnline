@@ -33,43 +33,44 @@
           <fieldset class="form__fieldset">
             <label class="label form__label form__label--name" for="name">
               <span class="label__text">Наименование</span>
-              <input class="form__input form__input--text" type="text" id="name" name="name">
+              <input class="form__input form__input--text" type="text" id="name" 
+              name="name" required>
             </label>
 
             <label class="label form__label form__label--category" for="category">
               <span class="label__text">Категория</span>
-              <input class="form__input form__input--text" type="text" id="category" name="category">
+              <input class="form__input form__input--text" type="text" id="category" name="category" required>
             </label>
 
-            <label class="label form__label form__label--unit" for="unit_type">
+            <label class="label form__label form__label--unit" for="unit">
               <span class="label__text">Единицы измерения</span>
-              <input class="form__input form__input--text" type="text" id="unit_type" name="unit_type">
+              <input class="form__input form__input--text" type="text" id="unit" name="unit" required>
             </label>
 
             <div class="form__checkbox-wrapper form__checkbox-wrapper--discount">
-              <label class="label form__label form__label--wrapped" for="discount_checkbox">
+              <label class="label form__label form__label--wrapped" for="discount_checkbox" >
                 <span class="label__text">Дисконт</span>
               </label>
 
-              <input class="form__input form__input--checkbox" type="checkbox" id="discount_checkbox"
-                onchange="this.form.discount.disabled=!this.checked">
-              <input class="form__input form__input--text" type="number" name="discount" min="1" max="99" id="discount_value"
-                disabled="disabled">
+              <input class="form__input form__input--checkbox" type="checkbox" id="discount_checkbox" >
+              <input class="form__input form__input--text" type="number" name="discount" min="1" max="99" id="discount_value" disabled="disabled" required>
             </div>
 
             <label class="label form__label form__label--description" for="description">
               <span class="label__text">Описание</span>
-              <textarea class="form__input form__input--textarea" id="description" name="description"></textarea>
+              <textarea class="form__input form__input--textarea" id="description" name="description" required></textarea>
             </label>
 
-            <label class="label form__label form__label--quantity" for="qty">
+            <label class="label form__label form__label--quantity" for="quantity">
               <span class="label__text">Количество</span>
-              <input class="form__input form__input--text" type="text" id="qty" name="qty">
+              <input class="form__input form__input--text" type="number" id="quantity" 
+              name="quantity" required>
             </label>
 
             <label class="label form__label form__label--price" for="price">
               <span class="label__text">Цена</span>
-              <input class="form__input form__input--text" type="text" id="price" name="price">
+              <input class="form__input form__input--text" type="number" id="price" 
+              name="price" required>
             </label>
 
             <span class="form__error">
@@ -95,7 +96,7 @@
           <div class="form__summary">
             <div class="summary">
               <p class="summary__text">Итоговая стоимость:
-                <span class="summary__value">$900.00</span>
+                <span class="summary__value">$0</span>
               </p>
             </div>
             <button class="form__button form__button--submit" type="submit">
@@ -120,7 +121,7 @@
       <h1 class="heading">CMS</h1>
       <div class="summary">
         <p class="summary__text">Итоговая стоимость:
-          <span class="summary__value">$900.00</span>
+          <span class="summary__value">$0</span>
         </p>
       </div>
     </div>
@@ -155,7 +156,7 @@
             <td class="table__column table__column--center">Ед/изм</td>
             <td class="table__column table__column--center">Количество</td>
             <td class="table__column table__column--right">Цена</td>
-            <td class="table__column table__column--right">Итог</td>
+            <td class="table__column table__column--right table__column--row-total">Итог</td>
             <td class="table__column"></td>
           </tr>
         </thead>
@@ -167,7 +168,7 @@
             <td class="table__column table__column--center">шт</td>
             <td class="table__column table__column--center">5</td>
             <td class="table__column table__column--right">$100</td>
-            <td class="table__column table__column--right">$500</td>
+            <td class="table__column table__column--right table__column--row-total">$500</td>
             <td class="table__column table__column--buttons">
               <button class="button edit-image">
                 <svg class="product-icon icon icon--no-image" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -208,7 +209,7 @@
             <td class="table__column table__column--center">шт</td>
             <td class="table__column table__column--center">12</td>
             <td class="table__column table__column--right">$14</td>
-            <td class="table__column table__column--right">$168</td>
+            <td class="table__column table__column--right table__column--row-total">$168</td>
             <td class="table__column table__column--buttons">
               <button class="button edit-image">
                 <svg class="product-icon icon icon--image" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -252,7 +253,7 @@
             <td class="table__column table__column--center">шт</td>
             <td class="table__column table__column--center">5</td>
             <td class="table__column table__column--right">$100</td>
-            <td class="table__column table__column--right">$500</td>
+            <td class="table__column table__column--right table__column--row-total">$500</td>
             <td class="table__column table__column--buttons">
               <button class="button edit-image">
                 <svg class="product-icon icon icon--no-image" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -293,7 +294,7 @@
             <td class="table__column table__column--center">шт</td>
             <td class="table__column table__column--center">5</td>
             <td class="table__column table__column--right">$100</td>
-            <td class="table__column table__column--right">$500</td>
+            <td class="table__column table__column--right table__column--row-total">$500</td>
             <td class="table__column table__column--buttons">
               <button class="button edit-image">
                 <svg class="product-icon icon icon--no-image" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -334,7 +335,7 @@
             <td class="table__column table__column--center">шт</td>
             <td class="table__column table__column--center">5</td>
             <td class="table__column table__column--right">$100</td>
-            <td class="table__column table__column--right">$500</td>
+            <td class="table__column table__column--right table__column--row-total">$500</td>
             <td class="table__column table__column--buttons">
               <button class="button edit-image">
                 <svg class="product-icon icon icon--no-image" xmlns="http://www.w3.org/2000/svg" width="20" height="20"

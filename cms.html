@@ -29,7 +29,8 @@
         </div>
         <div class="break"></div>
 
-        <form class="form" method="POST" action="https://jsonplaceholder.typicode.com/posts">
+        <form class="form" method="POST" action="https://jsonplaceholder.typicode.com/posts" 
+        name="product_modal">
           <fieldset class="form__fieldset">
             <label class="label form__label form__label--name" for="name">
               <span class="label__text">Наименование</span>
@@ -44,7 +45,8 @@
 
             <label class="label form__label form__label--unit" for="unit">
               <span class="label__text">Единицы измерения</span>
-              <input class="form__input form__input--text" type="text" id="unit" name="unit" required>
+              <input class="form__input form__input--text" type="text" id="unit" 
+              name="unit" required>
             </label>
 
             <div class="form__checkbox-wrapper form__checkbox-wrapper--discount">
@@ -52,7 +54,8 @@
                 <span class="label__text">Дисконт</span>
               </label>
 
-              <input class="form__input form__input--checkbox" type="checkbox" id="discount_checkbox" >
+              <input class="form__input form__input--checkbox" type="checkbox" 
+              name="discount_checkbox" id="discount_checkbox" >
               <input class="form__input form__input--text" type="number" name="discount" min="1" max="99" id="discount_value" disabled="disabled" required>
             </div>
 

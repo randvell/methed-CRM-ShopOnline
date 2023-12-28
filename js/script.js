@@ -5,13 +5,13 @@ const modalHeading = productModal.querySelector('.heading');
 const productId = productModal.querySelector('.identifier__value');
 const formCloseBtn = productModal.querySelector('.modal__close');
 
-const form = productModal.querySelector('.form');
-const discountCheckbox = form.querySelector('#discount_checkbox');
-const discountField = form.querySelector('#discount_value');
-const itemPriceField = form.querySelector('#price');
-const quantityField = form.querySelector('#quantity');
-const formTotalPrice = form.querySelector('.summary__value');
+const form = document.forms.product_modal;
+const discountCheckbox = form.elements.discount_checkbox;
+const discountField = form.elements.discount;
+const itemPriceField = form.elements.price;
+const quantityField = form.elements.quantity;
 
+const formTotalPrice = form.querySelector('.summary__value');
 const tableBody = document.querySelector('.table__body');
 
 const tableTotalField =

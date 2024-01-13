@@ -164,7 +164,6 @@
     "no-new-object": "error",
     "no-tabs": "error",
     "no-trailing-spaces": "error",
-    "object-curly-spacing": "error",
     "one-var": [
       "error",
       {

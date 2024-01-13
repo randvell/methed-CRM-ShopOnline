@@ -1,8 +1,10 @@
-export const createRow = (rowData) => {
+import { tableBody } from "./control.js";
+
+export const appendRow = (rowData) => {
   const { id, name, category, price, discount = 0, quantity, unit } = rowData;
 
-  const rowPrice = (price / 100) * (100 - discount);
-  const rowTotalPrice = rowPrice * quantity;
+  const rowPrice = Math.round((price / 100) * (100 - discount));
+  const rowTotalPrice = Math.round(rowPrice * quantity);
 
   const rowValues = [
     id,
@@ -14,7 +16,6 @@ export const createRow = (rowData) => {
     "$" + rowTotalPrice,
   ];
 
-  const tableBody = document.querySelector(".table__body");
   const tableRow = tableBody.querySelector(".table__row").cloneNode(true);
   const rowColumns = tableRow.querySelectorAll(".table__column");
 
@@ -34,16 +35,4 @@ export const createRow = (rowData) => {
   }
 
   tableBody.appendChild(tableRow);
-};
-
-export const setFormTotal = (form, price) => {
-  const formTotalPrice = form.querySelector(".summary__value");
-  formTotalPrice.innerHTML = "$" + Math.round(price);
-};
-
-export const setTableTotal = (tableTotal) => {
-  const tableTotalField = document.querySelector(
-    ".container--header-cms .summary__value"
-  );
-  tableTotalField.innerText = "$" + tableTotal;
 };

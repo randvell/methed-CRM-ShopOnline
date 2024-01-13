@@ -1,11 +1,41 @@
-import { createRow, setFormTotal, setTableTotal } from "./render.js";
+import { appendRow } from "./render.js";
 
-export const formControl = (form, overlay, addProductBtn) => {
-  const discountCheckbox = form.elements.discount_checkbox;
-  const discountField = form.elements.discount;
-  const itemPriceField = form.elements.price;
-  const quantityField = form.elements.quantity;
+export const tableBody = document.querySelector(".table__body");
 
+const form = document.forms.product_modal;
+
+const discountCheckbox = form.elements.discount_checkbox;
+const discountField = form.elements.discount;
+const itemPriceField = form.elements.price;
+const quantityField = form.elements.quantity;
+
+export const formTotalPriceField = form.querySelector(".summary__value");
+
+const overlay = document.querySelector(".overlay");
+const addProductBtn = document.querySelector(".button--add-product");
+
+const setFormTotal = (price) => {
+  formTotalPriceField.innerHTML = "$" + Math.round(price);
+};
+
+const setTableTotal = (total) => {
+  const tableTotalField = document.querySelector(
+    ".container--header-cms .summary__value"
+  );
+  tableTotalField.innerText = "$" + total;
+};
+
+const calculateTableTotal = () => {
+  const rows = tableBody.querySelectorAll(".table__column--row-total");
+  const tableTotal = Array.from(rows).reduce((total, current) => {
+    const value = +current.innerText.slice(1);
+    return total + value;
+  }, 0);
+
+  setTableTotal(tableTotal);
+};
+
+export const formControl = () => {
   const calculateFormTotal = () => {
     const itemPrice = +itemPriceField.value;
     const quantity = +quantityField.value;
@@ -15,7 +45,7 @@ export const formControl = (form, overlay, addProductBtn) => {
         ((itemPrice * quantity) / 100) * (100 - discount)
       );
 
-      setFormTotal(form, finalPrice);
+      setFormTotal(finalPrice);
     }
   };
 
@@ -32,7 +62,8 @@ export const formControl = (form, overlay, addProductBtn) => {
     const formData = Object.fromEntries(new FormData(form));
     form.reset();
     hideOverlay();
-    createRow(formData);
+    appendRow(formData);
+    calculateTableTotal();
   });
 
   discountCheckbox.addEventListener("change", (e) => {
@@ -74,25 +105,13 @@ export const formControl = (form, overlay, addProductBtn) => {
   });
 };
 
-export const tableControl = (tableBody) => {
-  const calculateTableTotal = () => {
-    const rows = tableBody.querySelectorAll(".table__column--row-total");
-    const tableTotal = Array.from(rows).reduce((total, current) => {
-      const value = +current.innerText.slice(1);
-      return total + value;
-    }, 0);
-
-    setTableTotal(tableTotal);
-  };
-
+export const tableControl = () => {
   tableBody.addEventListener("click", (e) => {
     const target = e.target;
     if (target.closest(".delete-product")) {
       const row = target.closest("tr");
       row.remove();
       calculateTableTotal();
-
-      console.log(tableBody.querySelectorAll("tr"));
     }
   });
 

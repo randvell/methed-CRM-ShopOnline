@@ -1,4 +1,4 @@
-import { tableControl, formControl } from "./modules/control.js";
+import { tableControl, formControl } from './modules/control.js';
 
 {
   const init = () => {
@@ -9,6 +9,6 @@ import { tableControl, formControl } from "./modules/control.js";
   window.cmsInit = init;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   window.cmsInit();
 });

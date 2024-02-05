@@ -1,4 +1,4 @@
-import { tableBody } from "./control.js";
+import { tableBody } from './control.js';
 
 export const appendRow = (rowData) => {
   const { id, name, category, price, discount = 0, quantity, unit } = rowData;
@@ -12,14 +12,14 @@ export const appendRow = (rowData) => {
     category,
     unit,
     quantity,
-    "$" + rowPrice,
-    "$" + rowTotalPrice,
+    '$' + rowPrice,
+    '$' + rowTotalPrice,
   ];
 
-  const tableRow = tableBody.querySelector(".table__row").cloneNode(true);
-  const rowColumns = tableRow.querySelectorAll(".table__column");
+  const tableRow = tableBody.querySelector('.table__row').cloneNode(true);
+  const rowColumns = tableRow.querySelectorAll('.table__column');
 
-  tableRow.innerText = "";
+  tableRow.innerText = '';
   for (let i = 0; i < rowColumns.length; i++) {
     const column = rowColumns[i];
     let currentValue = rowValues;

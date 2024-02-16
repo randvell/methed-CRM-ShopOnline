@@ -22,14 +22,14 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
 
-  font-family: "Inter Medium", sans-serif;
-  color: var(--fonts-primary, #25213B);
+  font-family: 'Inter Medium', sans-serif;
+  color: var(--fonts-primary, #25213b);
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 
-  background: var(--backgrounds-parent, #F2F0F9);
+  background: var(--backgrounds-parent, #f2f0f9);
 }
 
 img,
@@ -61,7 +61,8 @@ ul {
   margin: 0;
 }
 
-tr, td {
+tr,
+td {
   padding: 0;
 }
 
@@ -89,6 +90,7 @@ iframe {
 }
 
 .button {
+  cursor: pointer;
   transition: background-color 0.25s 0.05s ease, border-color 0.5s ease;
   border: none;
 }
@@ -108,15 +110,15 @@ iframe {
 }
 
 .container--page {
-  background: var(--backgrounds-primary, #FFF);
-  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.20));
+  background: var(--backgrounds-primary, #fff);
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.2));
   border-radius: 6px;
 }
 
 .heading {
   display: inline;
-  color: var(--fonts-primary-variant, #6E6893);
-  font-family: "Inter Bold", sans-serif;
+  color: var(--fonts-primary-variant, #6e6893);
+  font-family: 'Inter Bold', sans-serif;
   font-size: 24px;
   font-style: normal;
   font-weight: 700;

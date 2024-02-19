@@ -1,3 +1,4 @@
+import { getProductInfo } from './api.js';
 import {
   controlErrorModal,
   controlProductModal,
@@ -14,22 +15,31 @@ const activeModals = new Set();
 let productModal = null;
 let errorModal = null;
 
-export const showProductModal = async (e) => {
+export const showProductModal = async (productId) => {
   if (!productModal) {
     productModal = await createProductModal();
     controlProductModal(productModal);
     overlay.append(productModal);
   }
 
+  let productData = null;
+  if (productId) {
+    productData = await getProductInfo(productId);
+  }
+
   let modalHeading = 'Добавить товар';
-  const productData = e.productData;
   if (productData?.id) {
-    productModal.productIdentifier = productData.id;
+    productModal.productIdentifier.textContent = 'ID: ' + productData.id;
     modalHeading = 'Изменить товар';
   }
 
+  productModal.form.submitButton.textContent = modalHeading;
+  productModal.form.dataset.productId = productData?.id;
   productModal.heading.textContent = modalHeading;
+  productModal.form?.reset();
   fillFormData(productModal.form, productData);
+  productModal.form.calculateFormTotal();
+
   productModal.classList.add('modal--visible');
   showOverlay();
 

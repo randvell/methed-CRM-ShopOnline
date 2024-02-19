@@ -5,8 +5,8 @@ import {
   showProductModal,
 } from './modal.js';
 
-import { addProduct } from './render.js';
-import { createProduct } from './api.js';
+import { addProduct, editTableProduct, fillTableRow } from './render.js';
+import { createProduct, editProduct } from './api.js';
 
 const tableBody = document.querySelector('.table__body');
 const tableTotalField = document.querySelector(
@@ -25,14 +25,17 @@ export const calculateTableTotal = () => {
 
 document.addEventListener('DOMContentLoaded', () => calculateTableTotal());
 
-tableBody.addEventListener('click', (e) => {
+tableBody.addEventListener('click', async (e) => {
   const target = e.target;
   if (target.closest('.delete-product')) {
     const row = target.closest('tr');
     row.remove();
     calculateTableTotal();
-
-    console.log(tableBody.querySelectorAll('tr'));
+    return;
+  }
+  if (target.closest('.edit-product')) {
+    showProductModal(target.closest('.edit-product').dataset.productId);
+    return;
   }
 });
 
@@ -55,7 +58,7 @@ overlay.addEventListener('click', (e) => {
 });
 
 const addProductBtn = document.querySelector('.button--add-product');
-addProductBtn.addEventListener('click', showProductModal);
+addProductBtn.addEventListener('click', () => showProductModal());
 
 export const controlProductModal = (modal) => {
   const form = modal.form;
@@ -65,7 +68,7 @@ export const controlProductModal = (modal) => {
   const quantityField = form.elements.count;
   const formTotalPrice = form.summaryValueEl;
 
-  const calculateFormTotal = () => {
+  form.calculateFormTotal = () => {
     const itemPrice = +itemPriceField.value;
     const quantity = +quantityField.value;
     if (itemPrice > 0 && quantity > 0) {
@@ -85,12 +88,25 @@ export const controlProductModal = (modal) => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(form));
-    try {
-      const productResponse = await createProduct(formData);
-      addProduct(productResponse);
-    } catch (error) {
-      showErrorModal('Не удалось добавить товар: ' + error.message);
-      return;
+    if (form.dataset.productId) {
+      try {
+        const productResponse = await editProduct(
+          form.dataset.productId,
+          formData,
+        );
+        editTableProduct(form.dataset.productId, productResponse);
+      } catch (error) {
+        showErrorModal('Не удалось отредактировать товар: ' + error.message);
+        return;
+      }
+    } else {
+      try {
+        const productResponse = await createProduct(formData);
+        addProduct(productResponse);
+      } catch (error) {
+        showErrorModal('Не удалось добавить товар: ' + error.message);
+        return;
+      }
     }
 
     closeProductModal();
@@ -103,7 +119,7 @@ export const controlProductModal = (modal) => {
       target === discountField ||
       target === quantityField
     ) {
-      calculateFormTotal();
+      form.calculateFormTotal();
     }
   });
 
@@ -114,7 +130,7 @@ export const controlProductModal = (modal) => {
       discountField.value = null;
     }
 
-    calculateFormTotal();
+    form.calculateFormTotal();
     discountField.disabled = !isChecked;
   });
 

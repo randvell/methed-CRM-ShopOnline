@@ -21,13 +21,16 @@ export const loadStyle = (url) => {
 };
 
 export const fillFormData = (form, formData) => {
-  form.reset();
   if (!formData) {
     return;
   }
 
-  for (const [key, val] of formData) {
+  for (const [key, val] of Object.entries(formData)) {
     const input = form.elements[key];
+    if (!input) {
+      continue;
+    }
+
     switch (input.type) {
       case 'checkbox':
         input.checked = !!val;

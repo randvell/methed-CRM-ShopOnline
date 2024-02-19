@@ -5,23 +5,25 @@ import { errorSvg, iconDelete, iconEdit, iconImg, iconNoImg } from './svg.js';
 const tableBody = document.querySelector('.table__body');
 const templateRow = tableBody.querySelector('.table__row');
 
-const createButtons = (hasImage) => {
+const createButtons = ({ id, image }) => {
   const imgButton = document.createElement('button');
   imgButton.classList.add('button', 'edit-image');
-  imgButton.innerHTML = hasImage ? iconImg : iconNoImg;
+  imgButton.innerHTML = image ? iconImg : iconNoImg;
 
   const editButton = document.createElement('button');
   editButton.classList.add('button', 'edit-product');
+  editButton.dataset.productId = id;
   editButton.innerHTML = iconEdit;
 
   const delButton = document.createElement('button');
   delButton.classList.add('button', 'delete-product');
+  delButton.dataset.productId = id;
   delButton.innerHTML = iconDelete;
 
   return [imgButton, editButton, delButton];
 };
 
-export const createRow = (rowData) => {
+export const fillTableRow = (tableRow, rowData) => {
   const {
     id,
     title,
@@ -44,12 +46,12 @@ export const createRow = (rowData) => {
     count,
     '$' + rowPrice,
     '$' + rowTotalPrice,
-    createButtons(!!image),
+    createButtons({ id, image }),
   ];
 
-  const tableRow = templateRow.cloneNode(true);
   const rowColumns = tableRow.querySelectorAll('.table__column');
 
+  tableRow.dataset.productId = id;
   tableRow.innerText = '';
   for (let i = 0; i < rowColumns.length; i++) {
     const column = rowColumns[i];
@@ -60,6 +62,7 @@ export const createRow = (rowData) => {
 
     if (rowValues[i]) {
       if (Array.isArray(rowValues[i])) {
+        column.innerHTML = '';
         column.append(...rowValues[i]);
       } else {
         column.textContent = rowValues[i];
@@ -68,12 +71,29 @@ export const createRow = (rowData) => {
 
     tableRow.appendChild(column);
   }
+};
+
+export const createRow = (rowData) => {
+  const tableRow = templateRow.cloneNode(true);
+  fillTableRow(tableRow, rowData);
 
   return tableRow;
 };
 
 export const addProduct = (productData) => {
   tableBody.append(createRow(productData));
+};
+
+export const editTableProduct = (id, productData) => {
+  const tableRow = document.querySelector(
+    `.table__row[data-product-id="${id}"]`,
+  );
+
+  if (!tableRow) {
+    throw new Error('Не обнаружена запись таблицы для ID ' + id);
+  }
+
+  fillTableRow(tableRow, productData);
 };
 
 export const renderProducts = (productsData) => {
@@ -280,7 +300,6 @@ export const createProductModal = async () => {
   const heading = document.createElement('h2');
   heading.classList.add('heading');
   heading.textContent = 'Добавить товар';
-  // todo: или редактировать товар
 
   const productIdentifier = document.createElement('p');
   productIdentifier.classList.add('product-identifier');

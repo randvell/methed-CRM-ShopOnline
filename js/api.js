@@ -1,4 +1,36 @@
-const API_URL = 'https://button-hypnotic-pixie.glitch.me/';
+const API_URL = 'https://button-hypnotic-pixie.glitch.me';
+
+export const editProduct = async (id, productData) => {
+  const response = await fetch(`${API_URL}/api/goods/${id}`, {
+    method: 'PATCH',
+    body: JSON.stringify(productData),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка сервера: ${response.statusText}`);
+  }
+
+  const result = await response.json();
+  if (!result || !result.id) {
+    throw new Error(`В ответе сервера не обнаружена информацию по товару`);
+  }
+
+  return result;
+};
+
+export const getProductInfo = async (id) => {
+  const response = await fetch(`${API_URL}/api/goods/${id}`);
+  if (!response.ok) {
+    throw new Error(`Ошибка сервера: ${response.statusText}`);
+  }
+
+  const result = await response.json();
+  if (!result || !result.id) {
+    throw new Error(`В ответе сервера не обнаружена информацию по товару`);
+  }
+
+  return result;
+};
 
 export const getGoods = async (size = 'all') => {
   const response = await fetch(`${API_URL}/api/goods?size=` + size);

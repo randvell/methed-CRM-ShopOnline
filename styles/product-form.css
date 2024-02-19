@@ -1,46 +1,20 @@
-.overlay {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 10;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.modal--product {
-  display: none;
-  z-index: 11;
-  left: 30%;
-  position: absolute;
-  background: var(--backgrounds-parent, #f2f0f9);
-  padding: 30px 100px;
-}
-
-.modal--error {
-  display: none;
-  z-index: 12;
-  position: absolute;
-  left: 40%;
-  top: 20%;
-  grid-auto-flow: row;
-  align-content: center;
-  justify-items: center;
-  row-gap: 30px;
-  background: var(--backgrounds-parent, #f2f0f9);
-
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
-  width: 350px;
-  height: 350px;
-  min-height: unset;
-}
-
 .container--form {
   max-width: 580px;
 }
 
 .form__fieldset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'name description'
+    'category description'
+    'unit count'
+    'discount price'
+    'error image-btn'
+    'image-preview image-preview';
+  row-gap: 10px;
+  column-gap: 24px;
+
   border: none;
   border-radius: 6px;
   flex-shrink: 0;
@@ -123,38 +97,10 @@
   background: var(--Primary, #6d5bd0);
 }
 
-.modal__close {
-  position: absolute;
-  border: none;
-  background-image: url('../assets/cross.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  top: 20px;
-  right: 30px;
-  width: 20px;
-  height: 20px;
-}
-
 .form__inline {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.form__fieldset {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    'name description'
-    'category description'
-    'unit quantity'
-    'discount price'
-    'error image-btn'
-    'image-preview image-preview';
-  /* нужно разобраться как сделать отступы с учетом лейблов */
-  row-gap: 32px;
-  column-gap: 24px;
 }
 
 .form__checkbox-wrapper {
@@ -188,8 +134,8 @@
   grid-area: description;
 }
 
-.form__label--quantity {
-  grid-area: quantity;
+.form__label--count {
+  grid-area: count;
 }
 
 .form__label--price {
@@ -248,20 +194,7 @@
   justify-content: space-evenly;
 }
 
-.error-text {
-  color: var(--fonts-primary-variant, #6e6893);
-  font-family: 'Inter Bold';
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  word-break: break-all;
-  padding: 0 10px;
-}
-
-.identifier {
+.product-identifier {
   color: #c5c5c5;
   font-family: 'Inter SemiBold';
   font-size: 10px;
@@ -269,16 +202,4 @@
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
-}
-
-.overlay--visible {
-  display: block;
-}
-
-.modal--visible {
-  display: grid;
-}
-
-.container--header-modal {
-  align-items: center;
 }

@@ -1,7 +1,5 @@
-@import "fonts.css";
-@import "normalize.css";
-@import "global.css";
-@import "header.css";
-@import "form.css";
-@import "table.css";
-@import "form.css";
+@import 'fonts.css';
+@import 'normalize.css';
+@import 'global.css';
+@import 'header.css';
+@import 'table.css';

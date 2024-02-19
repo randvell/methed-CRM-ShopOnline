@@ -62,3 +62,24 @@ viewBox="0 0 20 20" fill="none">
   fill="#6E6893" />
 </svg>
 `;
+
+export const errorSvg = `
+<svg
+class="icon-cross"
+xmlns="http://www.w3.org/2000/svg"
+width="94"
+height="94"
+viewBox="0 0 94 94"
+fill="none">
+<path
+  d="M2 2L92 92"
+  stroke="#D80101"
+  stroke-width="3"
+  stroke-linecap="round" />
+<path
+  d="M2 92L92 2"
+  stroke="#D80101"
+  stroke-width="3"
+  stroke-linecap="round" />
+</svg>
+`;

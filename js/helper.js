@@ -1,3 +1,6 @@
+import { API_URL } from './api.js';
+import { createButtons } from './render.js';
+
 const styles = new Map();
 
 export const loadStyle = (url) => {
@@ -21,6 +24,14 @@ export const loadStyle = (url) => {
 };
 
 export const fillFormData = (form, formData) => {
+  if (formData?.image) {
+    form.imagePreview.src = `${API_URL}/${formData.image}`;
+    form.imagePreview.style.display = 'block';
+  } else {
+    form.imagePreview.src = null;
+    form.imagePreview.style.display = 'none';
+  }
+
   if (!formData) {
     return;
   }
@@ -35,9 +46,77 @@ export const fillFormData = (form, formData) => {
       case 'checkbox':
         input.checked = !!val;
         break;
+      case 'file':
+        // todo: понять как это должно работать
+        break;
       default:
         input.value = val;
         break;
     }
+  }
+};
+
+export const fileToBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.addEventListener('loadend', () => {
+      resolve(reader.result);
+    });
+
+    reader.addEventListener('error', (err) => {
+      reject(err);
+    });
+
+    reader.readAsDataURL(file);
+  });
+
+export const fillTableRow = (tableRow, rowData) => {
+  const {
+    id,
+    title,
+    category,
+    price,
+    discount = 0,
+    count,
+    units,
+    image,
+  } = rowData;
+
+  const rowPrice = (price / 100) * (100 - discount);
+  const rowTotalPrice = rowPrice * count;
+
+  const rowValues = [
+    id,
+    title,
+    category,
+    units,
+    count,
+    '$' + rowPrice,
+    '$' + rowTotalPrice,
+    createButtons({ id, image }),
+  ];
+
+  const rowColumns = tableRow.querySelectorAll('.table__column');
+
+  tableRow.dataset.productId = id;
+  tableRow.innerText = '';
+  for (let i = 0; i < rowColumns.length; i++) {
+    const column = rowColumns[i];
+    let currentValue = rowValues;
+    if (currentValue === undefined) {
+      currentValue = null;
+    }
+
+    if (rowValues[i]) {
+      if (Array.isArray(rowValues[i])) {
+        column.innerHTML = '';
+        column.append(...rowValues[i]);
+      } else {
+        column.textContent = rowValues[i];
+      }
+    }
+
+    tableRow.appendChild(column);
   }
 };

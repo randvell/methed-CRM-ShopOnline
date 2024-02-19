@@ -1,4 +1,4 @@
-const API_URL = 'https://button-hypnotic-pixie.glitch.me';
+export const API_URL = 'https://button-hypnotic-pixie.glitch.me';
 
 export const editProduct = async (id, productData) => {
   const response = await fetch(`${API_URL}/api/goods/${id}`, {
@@ -6,11 +6,11 @@ export const editProduct = async (id, productData) => {
     body: JSON.stringify(productData),
   });
 
-  if (!response.ok) {
-    throw new Error(`Ошибка сервера: ${response.statusText}`);
-  }
-
   const result = await response.json();
+  if (!response.ok) {
+    const error = result.message || `Ошибка сервера: ${response.statusText}`;
+    throw new Error(error);
+  }
   if (!result || !result.id) {
     throw new Error(`В ответе сервера не обнаружена информацию по товару`);
   }
@@ -20,11 +20,12 @@ export const editProduct = async (id, productData) => {
 
 export const getProductInfo = async (id) => {
   const response = await fetch(`${API_URL}/api/goods/${id}`);
-  if (!response.ok) {
-    throw new Error(`Ошибка сервера: ${response.statusText}`);
-  }
 
   const result = await response.json();
+  if (!response.ok) {
+    const error = result.message || `Ошибка сервера: ${response.statusText}`;
+    throw new Error(error);
+  }
   if (!result || !result.id) {
     throw new Error(`В ответе сервера не обнаружена информацию по товару`);
   }

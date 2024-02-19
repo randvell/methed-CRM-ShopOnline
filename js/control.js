@@ -5,8 +5,9 @@ import {
   showProductModal,
 } from './modal.js';
 
-import { addProduct, editTableProduct, fillTableRow } from './render.js';
+import { addProduct, editTableProduct } from './render.js';
 import { createProduct, editProduct } from './api.js';
+import { fileToBase64 } from './helper.js';
 
 const tableBody = document.querySelector('.table__body');
 const tableTotalField = document.querySelector(
@@ -87,12 +88,14 @@ export const controlProductModal = (modal) => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(form));
+    const productData = Object.fromEntries(new FormData(form));
+    productData.image = await fileToBase64(productData.image);
+
     if (form.dataset.productId) {
       try {
         const productResponse = await editProduct(
           form.dataset.productId,
-          formData,
+          productData,
         );
         editTableProduct(form.dataset.productId, productResponse);
       } catch (error) {
@@ -101,7 +104,7 @@ export const controlProductModal = (modal) => {
       }
     } else {
       try {
-        const productResponse = await createProduct(formData);
+        const productResponse = await createProduct(productData);
         addProduct(productResponse);
       } catch (error) {
         showErrorModal('Не удалось добавить товар: ' + error.message);
@@ -139,6 +142,33 @@ export const controlProductModal = (modal) => {
     if (value !== undefined && value.toString().length >= 2) {
       e.preventDefault();
     }
+  });
+
+  const previewEl = form.imagePreview;
+  form.image.addEventListener('change', () => {
+    form.errorEL.textContent = '';
+    previewEl.style.display = 'none';
+    previewEl.src = null;
+
+    if (form.image.files.length > 0) {
+      const file = form.image.files[0];
+      const fileSize = file.size;
+      const maxFileSize = 1024 * 1024; // 1 MB
+
+      if (fileSize > maxFileSize) {
+        form.errorEL.textContent =
+          'Изображение не должно превышать размер 1 Мб';
+        form.image.value = '';
+      } else {
+        const src = URL.createObjectURL(file);
+        previewEl.src = src;
+        previewEl.style.display = 'block';
+      }
+    }
+  });
+
+  form.imageButton.addEventListener('click', () => {
+    form.image.click();
   });
 };
 

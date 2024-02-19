@@ -34,7 +34,7 @@ export const showProductModal = async (productId) => {
   }
 
   productModal.form.submitButton.textContent = modalHeading;
-  productModal.form.dataset.productId = productData?.id;
+  productModal.form.dataset.productId = productData?.id || '';
   productModal.heading.textContent = modalHeading;
   productModal.form?.reset();
   fillFormData(productModal.form, productData);

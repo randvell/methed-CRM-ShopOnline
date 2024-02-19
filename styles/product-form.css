@@ -145,10 +145,13 @@
 .form__button--add-image {
   grid-area: image-btn;
   width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .form__error {
   grid-area: error;
+  place-self: center;
   color: #d80101;
   text-align: center;
   font-family: 'Inter Bold';
@@ -161,13 +164,12 @@
 }
 
 .form__image-preview {
-  /* по дефолту не будет видно на странице */
-  position: relative;
   grid-area: image-preview;
   place-self: center;
-  background: url('../images/form_preview.jpg') no-repeat;
-  width: 200px;
-  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
 }
 
 .form__image-overlay {
@@ -202,4 +204,8 @@
   font-weight: 600;
   line-height: normal;
   text-transform: uppercase;
+}
+
+.form__input--file {
+  display: none;
 }

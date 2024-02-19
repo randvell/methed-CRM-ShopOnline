@@ -1,11 +1,11 @@
 import { calculateTableTotal } from './control.js';
-import { loadStyle } from './helper.js';
+import { fillTableRow, loadStyle } from './helper.js';
 import { errorSvg, iconDelete, iconEdit, iconImg, iconNoImg } from './svg.js';
 
 const tableBody = document.querySelector('.table__body');
 const templateRow = tableBody.querySelector('.table__row');
 
-const createButtons = ({ id, image }) => {
+export const createButtons = ({ id, image }) => {
   const imgButton = document.createElement('button');
   imgButton.classList.add('button', 'edit-image');
   imgButton.innerHTML = image ? iconImg : iconNoImg;
@@ -21,56 +21,6 @@ const createButtons = ({ id, image }) => {
   delButton.innerHTML = iconDelete;
 
   return [imgButton, editButton, delButton];
-};
-
-export const fillTableRow = (tableRow, rowData) => {
-  const {
-    id,
-    title,
-    category,
-    price,
-    discount = 0,
-    count,
-    units,
-    image,
-  } = rowData;
-
-  const rowPrice = (price / 100) * (100 - discount);
-  const rowTotalPrice = rowPrice * count;
-
-  const rowValues = [
-    id,
-    title,
-    category,
-    units,
-    count,
-    '$' + rowPrice,
-    '$' + rowTotalPrice,
-    createButtons({ id, image }),
-  ];
-
-  const rowColumns = tableRow.querySelectorAll('.table__column');
-
-  tableRow.dataset.productId = id;
-  tableRow.innerText = '';
-  for (let i = 0; i < rowColumns.length; i++) {
-    const column = rowColumns[i];
-    let currentValue = rowValues;
-    if (currentValue === undefined) {
-      currentValue = null;
-    }
-
-    if (rowValues[i]) {
-      if (Array.isArray(rowValues[i])) {
-        column.innerHTML = '';
-        column.append(...rowValues[i]);
-      } else {
-        column.textContent = rowValues[i];
-      }
-    }
-
-    tableRow.appendChild(column);
-  }
 };
 
 export const createRow = (rowData) => {
@@ -248,13 +198,20 @@ const createProductForm = () => {
     createDiscountInput(),
   );
 
+  const file = createInputEl({ name: 'image', type: 'file' });
+
+  const previewEl = document.createElement('img');
+  previewEl.classList.add('form__image-preview');
+  previewEl.style.display = 'none';
+  form.append(previewEl);
+
   const errorEl = document.createElement('span');
   errorEl.classList.add('form__error');
   const imageButton = document.createElement('button');
   imageButton.classList.add('form__button', 'form__button--add-image');
   imageButton.type = 'button';
   imageButton.textContent = 'Добавить изображение';
-  fieldset.append(errorEl, imageButton);
+  fieldset.append(file, previewEl, imageButton, errorEl);
 
   const formSummary = document.createElement('div');
   formSummary.classList.add('form__summary');
@@ -278,6 +235,8 @@ const createProductForm = () => {
 
   formSummary.append(summaryTextContainer, submitButton);
 
+  form.imagePreview = previewEl;
+  form.imageButton = imageButton;
   form.submitButton = submitButton;
   form.summaryValueEl = summaryValue;
   form.errorEL = errorEl;

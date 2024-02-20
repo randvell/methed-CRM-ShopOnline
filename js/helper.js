@@ -24,11 +24,11 @@ export const loadStyle = (url) => {
 };
 
 export const fillFormData = (form, formData) => {
-  if (formData?.image) {
+  if (formData?.image && formData.image !== 'image/notimage.jpg') {
     form.imagePreview.src = `${API_URL}/${formData.image}`;
     form.imagePreview.style.display = 'block';
   } else {
-    form.imagePreview.src = null;
+    form.imagePreview.src = '';
     form.imagePreview.style.display = 'none';
   }
 

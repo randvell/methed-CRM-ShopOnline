@@ -163,11 +163,17 @@
   text-transform: uppercase;
 }
 
-.form__image-preview {
+.form__preview-container {
+  position: relative;
   grid-area: image-preview;
   place-self: center;
+}
+
+.form__image-preview {
   max-width: 200px;
   max-height: 200px;
+  min-width: 50px;
+  min-height: 50px;
   width: auto;
   height: auto;
 }
@@ -188,6 +194,12 @@
 
 .form__image-overlay:hover {
   opacity: 1;
+}
+
+.form__img-delete-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
 }
 
 .form__summary {

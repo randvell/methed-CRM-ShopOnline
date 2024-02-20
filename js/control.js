@@ -89,7 +89,11 @@ export const controlProductModal = (modal) => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const productData = Object.fromEntries(new FormData(form));
-    productData.image = await fileToBase64(productData.image);
+    if (productData.image?.name && productData.image?.size) {
+      productData.image = await fileToBase64(productData.image);
+    } else {
+      productData.image = '';
+    }
 
     if (form.dataset.productId) {
       try {
@@ -145,10 +149,11 @@ export const controlProductModal = (modal) => {
   });
 
   const previewEl = form.imagePreview;
-  form.image.addEventListener('change', () => {
+
+  const processFileInputChange = () => {
     form.errorEL.textContent = '';
     previewEl.style.display = 'none';
-    previewEl.src = null;
+    previewEl.src = '';
 
     if (form.image.files.length > 0) {
       const file = form.image.files[0];
@@ -165,10 +170,18 @@ export const controlProductModal = (modal) => {
         previewEl.style.display = 'block';
       }
     }
+  };
+
+  form.image.addEventListener('change', processFileInputChange);
+
+  form.imageButton.addEventListener('click', (e) => {
+    form.image.click();
   });
 
-  form.imageButton.addEventListener('click', () => {
-    form.image.click();
+  form.imgDeleteButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    form.image.value = '';
+    processFileInputChange();
   });
 };
 

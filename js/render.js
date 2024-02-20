@@ -1,6 +1,13 @@
 import { calculateTableTotal } from './control.js';
 import { fillTableRow, loadStyle } from './helper.js';
-import { errorSvg, iconDelete, iconEdit, iconImg, iconNoImg } from './svg.js';
+import {
+  deleteImgSvg,
+  errorSvg,
+  iconDelete,
+  iconEdit,
+  iconImg,
+  iconNoImg,
+} from './svg.js';
 
 const tableBody = document.querySelector('.table__body');
 const templateRow = tableBody.querySelector('.table__row');
@@ -200,10 +207,21 @@ const createProductForm = () => {
 
   const file = createInputEl({ name: 'image', type: 'file' });
 
-  const previewEl = document.createElement('img');
-  previewEl.classList.add('form__image-preview');
-  previewEl.style.display = 'none';
-  form.append(previewEl);
+  const imgContainer = document.createElement('div');
+  imgContainer.classList.add('form__preview-container');
+
+  const imgEl = document.createElement('img');
+  imgEl.classList.add('form__image-preview');
+  imgEl.style.display = 'none';
+
+  const imgOverlay = document.createElement('div');
+  imgOverlay.classList.add('form__image-overlay');
+  const imgDeleteButton = document.createElement('button');
+  imgDeleteButton.classList.add('form__img-delete-button');
+  imgDeleteButton.innerHTML = deleteImgSvg;
+
+  imgOverlay.append(imgDeleteButton);
+  imgContainer.append(imgEl, imgOverlay);
 
   const errorEl = document.createElement('span');
   errorEl.classList.add('form__error');
@@ -211,7 +229,7 @@ const createProductForm = () => {
   imageButton.classList.add('form__button', 'form__button--add-image');
   imageButton.type = 'button';
   imageButton.textContent = 'Добавить изображение';
-  fieldset.append(file, previewEl, imageButton, errorEl);
+  fieldset.append(file, imgContainer, imageButton, errorEl);
 
   const formSummary = document.createElement('div');
   formSummary.classList.add('form__summary');
@@ -235,7 +253,8 @@ const createProductForm = () => {
 
   formSummary.append(summaryTextContainer, submitButton);
 
-  form.imagePreview = previewEl;
+  form.imgDeleteButton = imgDeleteButton;
+  form.imagePreview = imgEl;
   form.imageButton = imageButton;
   form.submitButton = submitButton;
   form.summaryValueEl = summaryValue;

@@ -6,7 +6,7 @@ import {
 } from './modal.js';
 
 import { addProduct, editTableProduct } from './render.js';
-import { createProduct, editProduct } from './api.js';
+import { API_URL, createProduct, editProduct } from './api.js';
 import { fileToBase64 } from './helper.js';
 
 const tableBody = document.querySelector('.table__body');
@@ -26,6 +26,30 @@ export const calculateTableTotal = () => {
 
 document.addEventListener('DOMContentLoaded', () => calculateTableTotal());
 
+const openNewWindowImage = (imageSource) => {
+  const screenWidth = window.screen.width;
+  const screenHeight = window.screen.height;
+  const windowWidth = 600;
+  const windowHeight = 600;
+
+  const left = (screenWidth - windowWidth) / 2;
+  const top = (screenHeight - windowHeight) / 2;
+
+  const windowFeatures =
+    'width=' +
+    windowWidth +
+    ',height=' +
+    windowHeight +
+    ',top=' +
+    top +
+    ',left=' +
+    left;
+
+  const imageUrl = `${API_URL}/${imageSource}`;
+
+  open(imageUrl, '', windowFeatures);
+};
+
 tableBody.addEventListener('click', async (e) => {
   const target = e.target;
   if (target.closest('.delete-product')) {
@@ -36,6 +60,12 @@ tableBody.addEventListener('click', async (e) => {
   }
   if (target.closest('.edit-product')) {
     showProductModal(target.closest('.edit-product').dataset.productId);
+    return;
+  }
+
+  const closestButton = target.closest('.show-image');
+  if (closestButton && closestButton.dataset.pic) {
+    openNewWindowImage(closestButton.dataset.pic);
     return;
   }
 });
@@ -171,6 +201,8 @@ export const controlProductModal = (modal) => {
       }
     }
   };
+
+  form.addEventListener('reset', processFileInputChange);
 
   form.image.addEventListener('change', processFileInputChange);
 

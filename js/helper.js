@@ -54,6 +54,12 @@ export const fillFormData = (form, formData) => {
         break;
     }
   }
+
+  if (+formData.discount > 0) {
+    form.elements['discount_checkbox'].checked = true;
+  }
+
+  form.elements['discount_checkbox'].dispatchEvent(new Event('change'));
 };
 
 export const fileToBase64 = (file) =>

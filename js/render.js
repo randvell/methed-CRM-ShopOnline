@@ -14,8 +14,13 @@ const templateRow = tableBody.querySelector('.table__row');
 
 export const createButtons = ({ id, image }) => {
   const imgButton = document.createElement('button');
-  imgButton.classList.add('button', 'edit-image');
-  imgButton.innerHTML = image ? iconImg : iconNoImg;
+  imgButton.classList.add('button', 'show-image');
+  if (image && image !== 'image/notimage.jpg') {
+    imgButton.innerHTML = iconImg;
+    imgButton.dataset.pic = image;
+  } else {
+    imgButton.innerHTML = iconNoImg;
+  }
 
   const editButton = document.createElement('button');
   editButton.classList.add('button', 'edit-product');

@@ -15,6 +15,19 @@ const activeModals = new Set();
 let productModal = null;
 let errorModal = null;
 
+const centerModal = (modal) => {
+  const screenWidth = window.screen.width;
+  const screenHeight = window.screen.height;
+  const width = modal.clientWidth;
+  const height = modal.clientHeight;
+
+  const left = (screenWidth - width) / 2;
+  const top = (screenHeight - height) / 2;
+
+  modal.style.top = top;
+  modal.style.left = left;
+};
+
 export const showProductModal = async (productId) => {
   if (!productModal) {
     productModal = await createProductModal();
@@ -41,7 +54,9 @@ export const showProductModal = async (productId) => {
   productModal.form.calculateFormTotal();
 
   productModal.classList.add('modal--visible');
+
   showOverlay();
+  centerModal(productModal);
 
   activeModals.add('product');
 };
@@ -66,6 +81,7 @@ export const showErrorModal = async (error = 'Что-то пошло не так
   errorModal.errorText.textContent = error;
   errorModal.classList.add('modal--visible');
   showOverlay();
+  centerModal(productModal);
 
   activeModals.add('error');
 };

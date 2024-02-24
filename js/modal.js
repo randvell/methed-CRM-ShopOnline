@@ -20,12 +20,13 @@ const centerModal = (modal) => {
   const screenHeight = window.screen.height;
   const width = modal.clientWidth;
   const height = modal.clientHeight;
+  const scrollHeight = window.scrollY;
 
   const left = (screenWidth - width) / 2;
-  const top = (screenHeight - height) / 2;
+  const top = (screenHeight - height) / 2 + scrollHeight;
 
-  modal.style.top = top;
-  modal.style.left = left;
+  modal.style.top = top + 'px';
+  modal.style.left = left + 'px';
 };
 
 export const showProductModal = async (productId) => {

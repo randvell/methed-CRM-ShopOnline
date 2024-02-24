@@ -99,10 +99,6 @@ iframe {
   border: none;
 }
 
-.page {
-  padding: 20px;
-}
-
 .container {
   margin: 0 auto;
   max-width: 1100px;
@@ -125,4 +121,8 @@ iframe {
   line-height: normal;
   letter-spacing: 2.4px;
   text-transform: uppercase;
+}
+
+.header {
+  padding-top: 20px;
 }

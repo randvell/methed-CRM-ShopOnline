@@ -8,6 +8,7 @@ import {
 import { addProduct, editTableProduct } from './render.js';
 import { API_URL, createProduct, editProduct } from './api.js';
 import { fileToBase64 } from './helper.js';
+import { onlyCyrillic, onlyNumber } from './validator.js';
 
 const tableBody = document.querySelector('.table__body');
 const tableTotalField = document.querySelector(
@@ -93,24 +94,39 @@ addProductBtn.addEventListener('click', () => showProductModal());
 
 export const controlProductModal = (modal) => {
   const form = modal.form;
+  const title = form.elements.title;
+  const category = form.elements.category;
+  const description = form.elements.description;
   const discountCheckbox = form.elements.discount_checkbox;
   const discountField = form.elements.discount;
   const itemPriceField = form.elements.price;
   const quantityField = form.elements.count;
+  const units = form.elements.units;
+
   const formTotalPrice = form.summaryValueEl;
 
   form.calculateFormTotal = () => {
+    let finalPrice = 0;
     const itemPrice = +itemPriceField.value;
     const quantity = +quantityField.value;
     if (itemPrice > 0 && quantity > 0) {
       const discount = +discountField.value;
-      const finalPrice = Math.round(
+      finalPrice = Math.round(
         ((itemPrice * quantity) / 100) * (100 - discount),
       );
-
-      formTotalPrice.innerHTML = '$ ' + finalPrice.toLocaleString();
     }
+
+    formTotalPrice.innerHTML = '$ ' + finalPrice.toLocaleString();
   };
+
+  title.addEventListener('input', onlyCyrillic);
+  category.addEventListener('input', onlyCyrillic);
+  description.addEventListener('input', onlyCyrillic);
+  units.addEventListener('input', (event) => onlyCyrillic(event, false));
+
+  quantityField.addEventListener('input', onlyNumber);
+  discountField.addEventListener('input', onlyNumber);
+  itemPriceField.addEventListener('input', onlyNumber);
 
   modal.closeButton.addEventListener('click', () => {
     closeProductModal();
@@ -118,6 +134,12 @@ export const controlProductModal = (modal) => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (description.value?.length < 80) {
+      showErrorModal('Описание товара должно быть не меньше 80 символов');
+      return;
+    }
+
     const productData = Object.fromEntries(new FormData(form));
     if (productData.image?.name && productData.image?.size) {
       productData.image = await fileToBase64(productData.image);

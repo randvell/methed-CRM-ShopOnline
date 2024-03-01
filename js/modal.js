@@ -82,7 +82,7 @@ export const showErrorModal = async (error = 'Что-то пошло не так
   errorModal.errorText.textContent = error;
   errorModal.classList.add('modal--visible');
   showOverlay();
-  centerModal(productModal);
+  centerModal(errorModal);
 
   activeModals.add('error');
 };
